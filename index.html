@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your trusted source for curated news and analysis">
+    <meta name="keywords" content="news, headlines, breaking news, analysis, world news">
+    <meta property="og:title" content="NewsHub - Curated News & Analysis">
+    <meta property="og:description" content="Stay informed with the latest headlines and expert analysis">
+    <meta property="og:type" content="website">
+    <title>NewsHub - Curated News & Analysis</title>
+    
+    <!-- Google AdSense - Replace with your publisher ID -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+     crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">NewsHub</a>
+            <nav id="nav">
+                <a href="index.html">Home</a>
+                <a href="#" data-category="technology">Technology</a>
+                <a href="#" data-category="business">Business</a>
+                <a href="#" data-category="science">Science</a>
+                <a href="#" data-category="health">Health</a>
+            </nav>
+            <div class="search-box">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input type="text" id="searchInput" placeholder="Search news...">
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Loading State -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Loading news...</p>
+        </div>
+
+        <!-- Content Grid -->
+        <div id="content" class="content-grid" style="display: none;">
+            <!-- Left Column: Featured & Headlines -->
+            <div class="main-column">
+                <!-- Featured Story -->
+                <div id="featuredStory" class="featured-story">
+                    <!-- Dynamic content loaded here -->
+                </div>
+
+                <!-- Latest Headlines -->
+                <div class="section">
+                    <h3 class="section-title">Latest Headlines</h3>
+                    <div id="headlines" class="headlines-list">
+                        <!-- Dynamic content loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Ads & Trending -->
+            <aside class="sidebar">
+                <!-- Ad Space 1 -->
+                <div class="ad-unit">
+                    <div class="ad-placeholder">
+                        <p>Advertisement</p>
+                        <small>300x250 AdSense Unit</small>
+                    </div>
+                </div>
+
+                <!-- Trending Widget -->
+                <div class="trending-widget">
+                    <h3 class="widget-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2">
+                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                            <polyline points="17 6 23 6 23 12"></polyline>
+                        </svg>
+                        Trending Now
+                    </h3>
+                    <div id="trending" class="trending-list">
+                        <!-- Dynamic content loaded here -->
+                    </div>
+                </div>
+
+                <!-- Ad Space 2 -->
+                <div class="ad-unit">
+                    <div class="ad-placeholder tall">
+                        <p>Advertisement</p>
+                        <small>300x600 AdSense Unit</small>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Category Grid -->
+        <div id="categoryGrid" class="category-grid" style="display: none;">
+            <h3 class="section-title">Browse by Category</h3>
+            <div class="category-cards">
+                <a href="#" class="category-card" data-category="technology">Technology</a>
+                <a href="#" class="category-card" data-category="business">Business</a>
+                <a href="#" class="category-card" data-category="politics">Politics</a>
+                <a href="#" class="category-card" data-category="science">Science</a>
+                <a href="#" class="category-card" data-category="health">Health</a>
+                <a href="#" class="category-card" data-category="sports">Sports</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4>NewsHub</h4>
+                <p>Your trusted source for curated news and analysis.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Categories</h4>
+                <ul>
+                    <li><a href="#">Technology</a></li>
+                    <li><a href="#">Business</a></li>
+                    <li><a href="#">Science</a></li>
+                    <li><a href="#">Health</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>About</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Newsletter</h4>
+                <p>Get daily news delivered to your inbox</p>
+                <input type="email" placeholder="Your email" class="newsletter-input">
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 NewsHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/home.js"></script>
+</body>
+</html>
