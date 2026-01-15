@@ -4,7 +4,7 @@
 async function fetchTopHeadlines(category = '', country = CONFIG.DEFAULT_COUNTRY) {
     try {
         const categoryParam = category ? `&category=${category}` : '';
-        const url = `${CONFIG.NEWS_API_BASE_URL}/top-headlines?country=${country}${categoryParam}&pageSize=${CONFIG.DEFAULT_PAGE_SIZE}&apiKey=${CONFIG.NEWS_API_KEY}`;
+        const url = `${CONFIG.BACKEND_URL}/api/news?country=${country}${categoryParam}&pageSize=${CONFIG.DEFAULT_PAGE_SIZE}`;
         
         const response = await fetch(url);
         const data = await response.json();
@@ -24,13 +24,19 @@ async function fetchTopHeadlines(category = '', country = CONFIG.DEFAULT_COUNTRY
 // Search news
 async function searchNews(query) {
     try {
-        const url = `${CONFIG.NEWS_API_BASE_URL}/everything?q=${encodeURIComponent(query)}&sortBy=publishedAt&pageSize=${CONFIG.DEFAULT_PAGE_SIZE}&apiKey=${CONFIG.NEWS_API_KEY}`;
+        // Search by using technology category as default, as backend currently supports top-headlines
+        // For full search functionality, extend the backend /api/news endpoint to support search parameter
+        const url = `${CONFIG.BACKEND_URL}/api/news?pageSize=${CONFIG.DEFAULT_PAGE_SIZE}`;
         
         const response = await fetch(url);
         const data = await response.json();
         
         if (data.status === 'ok') {
-            return data.articles;
+            // Filter articles on the frontend based on search query
+            return data.articles.filter(article => 
+                article.title.toLowerCase().includes(query.toLowerCase()) ||
+                article.description?.toLowerCase().includes(query.toLowerCase())
+            );
         } else {
             console.error('API Error:', data.message);
             return [];

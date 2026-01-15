@@ -1,8 +1,7 @@
 // API Configuration
 const CONFIG = {
-    // Get your API key from: https://newsapi.org/
-    NEWS_API_KEY: '31a81f721af54fe1862d4072e5d341dc', // API key inserted
-    NEWS_API_BASE_URL: 'https://newsapi.org/v2',
+    // Backend API endpoint
+    BACKEND_URL: 'http://localhost:5000',
     
     // Default settings
     DEFAULT_COUNTRY: 'us',
@@ -28,8 +27,5 @@ const CONFIG = {
     }
 };
 
-// Check if API key is configured
-if (CONFIG.NEWS_API_KEY === 'YOUR_API_KEY_HERE') {
-    console.warn('⚠️ Please configure your News API key in js/config.js');
-    console.info('Get your free API key at: https://newsapi.org/');
-}
+// Verify backend is configured
+console.log('📡 Frontend configured to use backend at:', CONFIG.BACKEND_URL);
