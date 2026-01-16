@@ -1,13 +1,17 @@
 // Homepage JavaScript
 
 let currentArticles = [];
+let currentCountry = CONFIG.DEFAULT_COUNTRY;
 
 // Initialize homepage
 async function initHomePage() {
     showLoading(true);
     
+    // Initialize country selector
+    initCountrySelector();
+    
     // Load articles
-    const articles = await fetchTopHeadlines();
+    const articles = await fetchTopHeadlines('', currentCountry);
     currentArticles = articles;
     
     if (articles.length > 0) {
@@ -123,6 +127,18 @@ function displayCategoryGrid() {
     container.style.display = 'block';
 }
 
+// Initialize country selector
+function initCountrySelector() {
+    const selector = document.getElementById('countrySelector');
+    if (!selector) return;
+    
+    selector.innerHTML = CONFIG.COUNTRIES.map(country => 
+        `<option value="${country.code}" ${country.code === currentCountry ? 'selected' : ''}>
+            ${country.flag} ${country.name}
+        </option>`
+    ).join('');
+}
+
 // Open article page
 function openArticle(articleId) {
     window.location.href = `article.html?id=${articleId}`;
@@ -137,6 +153,16 @@ function setupEventListeners() {
     if (mobileMenuBtn && nav) {
         mobileMenuBtn.addEventListener('click', () => {
             nav.classList.toggle('active');
+        });
+    }
+    
+    // Country selector
+    const countrySelector = document.getElementById('countrySelector');
+    if (countrySelector) {
+        countrySelector.addEventListener('change', async (e) => {
+            currentCountry = e.target.value;
+            console.log('Country changed to:', currentCountry);
+            await loadCountryNews();
         });
     }
     
@@ -179,11 +205,31 @@ function setupEventListeners() {
     }
 }
 
+// Load news for selected country
+async function loadCountryNews() {
+    console.log('Loading news for country:', currentCountry);
+    showLoading(true);
+    
+    const articles = await fetchTopHeadlines('', currentCountry);
+    console.log('Fetched articles:', articles.length);
+    currentArticles = articles;
+    
+    if (articles.length > 0) {
+        displayFeaturedStory(articles[0]);
+        displayHeadlines(articles.slice(1, 10));
+        displayTrending(articles.slice(0, 5));
+    } else {
+        console.log('No articles found for country:', currentCountry);
+    }
+    
+    showLoading(false);
+}
+
 // Load category
 async function loadCategory(category) {
     showLoading(true);
     
-    const articles = await fetchNewsByCategory(category);
+    const articles = await fetchNewsByCategory(category, currentCountry);
     
     if (articles.length > 0) {
         displayFeaturedStory(articles[0]);

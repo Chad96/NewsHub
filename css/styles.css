@@ -72,6 +72,26 @@ nav a:hover {
     width: 200px;
 }
 
+.country-selector {
+    background: white;
+    border: 1px solid #e5e7eb;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.country-selector:hover {
+    border-color: #2563eb;
+}
+
+.country-selector:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
 .mobile-menu-btn {
     display: none;
     background: none;

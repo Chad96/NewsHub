@@ -7,6 +7,12 @@ const CONFIG = {
     DEFAULT_COUNTRY: 'us',
     DEFAULT_PAGE_SIZE: 20,
     
+    // Countries
+    COUNTRIES: [
+        { code: 'us', name: 'United States', flag: '🇺🇸' },
+        { code: 'za', name: 'South Africa', flag: '🇿🇦' }
+    ],
+    
     // Categories
     CATEGORIES: [
         'technology',

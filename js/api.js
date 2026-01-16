@@ -48,8 +48,8 @@ async function searchNews(query) {
 }
 
 // Fetch news by category
-async function fetchNewsByCategory(category) {
-    return await fetchTopHeadlines(category);
+async function fetchNewsByCategory(category, country = CONFIG.DEFAULT_COUNTRY) {
+    return await fetchTopHeadlines(category, country);
 }
 
 // Format time ago

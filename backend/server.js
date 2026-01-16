@@ -22,17 +22,26 @@ app.get('/', (req, res) => {
 app.get('/api/news', async (req, res) => {
   try {
     const {
-      category = 'technology',
+      category = '',
       country = 'us',
       pageSize = 20
     } = req.query;
 
-    const url = `${NEWS_API_BASE_URL}/top-headlines?` +
-      `category=${category}&country=${country}` +
-      `&pageSize=${pageSize}&apiKey=${process.env.NEWS_API_KEY}`;
+    // Build URL - only include category if provided
+    let url = `${NEWS_API_BASE_URL}/top-headlines?country=${country}&pageSize=${pageSize}`;
+    if (category) {
+      url += `&category=${category}`;
+    }
+    url += `&apiKey=${process.env.NEWS_API_KEY}`;
+
+    console.log('Fetching news from:', url.replace(process.env.NEWS_API_KEY, 'API_KEY'));
 
     const response = await fetch(url);
     const data = await response.json();
+
+    if (data.status === 'error') {
+      console.error('NewsAPI Error:', data.message);
+    }
 
     res.json(data);
   } catch (error) {
